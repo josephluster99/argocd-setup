@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#Checkout the code from GitHub repository
+      #Checkout the code from GitHub repository
       - name: Checkout code
         uses: actions/checkout@v2
       #Login to Docker Hub
@@ -34,11 +34,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.G_TOKEN }}
 
-       - name: tag and push image to GHCR
-       env:
+      - name: tag and push image to GHCR
+        env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-       run: |
+        run: |
          IMAGE_ID=ghcr.io/${GITHUB_REPOSITORY}/my-app:latest
          docker tag $DOCKER_USERNAME/my-app:latest $IMAGE_ID
          docker push $IMAGE_ID
