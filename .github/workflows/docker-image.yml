@@ -26,6 +26,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: |
+          LOWER_USER=$(echo "DOCKER_USERNAME" | tr '[:upper:]' '[:lower:]')
           docker build -t DOCKER_USERNAME/my-app:latest -f argocd-cicd-setup/Dockerfile .
           docker push DOCKER_USERNAME/my-app:latest
           
